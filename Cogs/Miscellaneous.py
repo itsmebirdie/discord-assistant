@@ -89,8 +89,8 @@ class Miscellaneous(commands.Cog):
             )
             embed.add_field(name=":hand_splayed: >help Welcomer",value="> To Get Help with Welcomer Commands", inline=False)
             embed.add_field(name=":face_with_monocle: >help Moderation",value="> To Get Help with Moderation Commands", inline=False)
-            embed.add_field(name="<:ttt:861199187593134090> >help Tic Tac Toe",value="> To Get Help with Tic Tac Toe Commands", inline=False)
-            embed.add_field(name="<a:KEKS:837519298926346291> >help Fun",value="> To Get Help with Fun Commands", inline=False)
+            embed.add_field(name=":game_die: >help Tic Tac Toe",value="> To Get Help with Tic Tac Toe Commands", inline=False)
+            embed.add_field(name=":grin: >help Fun",value="> To Get Help with Fun Commands", inline=False)
             embed.add_field(name=":o2: >help Miscellaneous", value="> To Get Help with Other Commands", inline=False)
 
 
