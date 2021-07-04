@@ -43,7 +43,7 @@ class Miscellaneous(commands.Cog):
         elif str(ctx.command) == "setWelcomeChannel" and isinstance(error, commands.ChannelNotReadable):
             await ctx.send(embed=discord.Embed(title="Whoops", description=f"I cannot read that channel!", color=discord.Color.red()))
         else:
-            await ctx.send(embed=discord.Embed(title="Whoops", description=f"An Unexpted Error has popped out of nowhere: {error}", color = discord.Color.red()))
+            await ctx.send(embed=discord.Embed(title="Whoops", description=f"An Unexpected Error has popped out of nowhere: {error}", color = discord.Color.red()))
 
             
     ##############################################################################################
