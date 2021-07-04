@@ -358,132 +358,67 @@ Why not try someone else?
         ## ==> CHECKING WINNER
         ##############################################################################################################################################################
         
-        ## ==> X, VERTICAL
+        ## ==> VERTICAL
         ###############################################################################
-
-        if board_temp[0] == x and board_temp[1] == x and board_temp[2] == x:
-            await ctx.send("X is the WINNER")
+        
+        if (board_temp[0] == x and board_temp[1] == x and board_temp[2] == x) or (board_temp[0] == o and board_temp[1] == o and board_temp[2] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return
             
-        elif board_temp[3] == x and board_temp[4] == x and board_temp[5] == x:
-            await ctx.send("X is the WINNER")
+        elif (board_temp[3] == x and board_temp[4] == x and board_temp[5] == x) or board_temp[3] == o and board_temp[4] == o and board_temp[5] == o:
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return
             
-        elif board_temp[6] == x and board_temp[7] == x and board_temp[8] == x:
-            await ctx.send("X is the WINNER")
+        elif (board_temp[6] == x and board_temp[7] == x and board_temp[8] == x) or (board_temp[6] == o and board_temp[7] == o and board_temp[8] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return
             
         ###############################################################################
         
-        ## ==> X, HORIZONTAL
+        ## ==> HORIZONTAL
         ###############################################################################
             
-        elif board_temp[0] == x and board_temp[3] == x and board_temp[6] == x:
-            await ctx.send("X is the WINNER")
+        elif (board_temp[0] == x and board_temp[3] == x and board_temp[6] == x) or (board_temp[0] == o and board_temp[3] == o and board_temp[6] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return
             
-        elif board_temp[1] == x and board_temp[4] == x and board_temp[7] == x:
-            await ctx.send("X is the WINNER")
+        elif (board_temp[1] == x and board_temp[4] == x and board_temp[7] == x) or (board_temp[1] == o and board_temp[4] == o and board_temp[7] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return
             
-        elif board_temp[2] == x and board_temp[5] == x and board_temp[8] == x:
-            await ctx.send("X is the WINNER")
+        elif (board_temp[2] == x and board_temp[5] == x and board_temp[8] == x) or (board_temp[2] == o and board_temp[5] == o and board_temp[8] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return    
             
         ###############################################################################
         
-        ## ==> X, DIAGONAL
+        ## ==> DIAGONAL
         ###############################################################################
             
-        elif board_temp[0] == x and board_temp[4] == x and board_temp[8] == x:
-            await ctx.send("X is the WINNER")
+        elif (board_temp[0] == x and board_temp[4] == x and board_temp[8] == x) or (board_temp[0] == o and board_temp[4] == o and board_temp[8] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
             return
             
-        elif board_temp[2] == x and board_temp[4] == x and board_temp[6] == x:
-            await ctx.send("X is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]  
-            return  
-            
-        ###############################################################################
-        
-        ## ==> O, VERTICAL
-        ###############################################################################
-        
-        if board_temp[0] == o and board_temp[1] == o and board_temp[2] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        elif board_temp[3] == o and board_temp[4] == o and board_temp[5] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        elif board_temp[6] == o and board_temp[7] == o and board_temp[8] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        ###############################################################################
-        
-        ## ==> O, HORIZONTAL
-        ###############################################################################
-            
-        elif board_temp[0] == o and board_temp[3] == o and board_temp[6] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        elif board_temp[1] == o and board_temp[4] == o and board_temp[7] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        elif board_temp[2] == o and board_temp[5] == o and board_temp[8] == o:
-            await ctx.send("O is the WINNER")
+        elif (board_temp[2] == x and board_temp[4] == x and board_temp[6] == x) or (board_temp[2] == o and board_temp[4] == o and board_temp[6] == o):
+            await ctx.send(f"{ctx.author.mention} is the WINNER")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
             del self.BOARDS[ctx.author.id],self.BOARDS[OtherP] 
-            return   
-            
-        ###############################################################################
-        
-        ## ==> O, DIAGONAL
-        ###############################################################################
-            
-        elif board_temp[0] == o and board_temp[4] == o and board_temp[8] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        elif board_temp[2] == o and board_temp[4] == o and board_temp[6] == o:
-            await ctx.send("O is the WINNER")
-            del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]
-            del self.BOARDS[ctx.author.id],self.BOARDS[OtherP]
-            return
-            
-        ###############################################################################        
-        
+            return     
+                
         if self.BOARDS[ctx.author.id]["POS"] == 9:
             await ctx.send("Match Draw")
             del self.MEMBER_DATA[ctx.author.id],self.MEMBER_DATA[OtherP]

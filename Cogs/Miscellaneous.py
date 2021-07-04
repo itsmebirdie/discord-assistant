@@ -1,6 +1,5 @@
-import discord, sys, datetime, requests, json
+import discord, sys, datetime, json
 from discord.ext import commands
-from random import choice
 from time import time
 
 class Miscellaneous(commands.Cog):
@@ -8,12 +7,6 @@ class Miscellaneous(commands.Cog):
         self.bot = bot
         with open("Configuration/config.json") as f:
             self.STARTTIME = json.loads(f.read())["starttime"]
-
-        self.EIGHT_BALL_ANSWERS = [
-            "Yeah", "Yes", "Ofcourse", "Ofc", "Ah Yes", "I see in the Prophecy: TRUE!"
-            "Nah", "No", 'Nope', 'Never', "I don't think so",
-            "idk", "Maybe", "ig", "I'm bored", "You're annoying"
-        ]
 
     ## ==> ERROR HANDLING
     #############################################################################################
@@ -50,7 +43,7 @@ class Miscellaneous(commands.Cog):
         elif str(ctx.command) == "setWelcomeChannel" and isinstance(error, commands.ChannelNotReadable):
             await ctx.send(embed=discord.Embed(title="Whoops", description=f"I cannot read that channel!", color=discord.Color.red()))
         else:
-            await ctx.send(embed=discord.Embed(title="Whoops", description=f"An Unaccepted Error has popped out of nowhere: {error}", color = discord.Color.red()))
+            await ctx.send(embed=discord.Embed(title="Whoops", description=f"An Unexpted Error has popped out of nowhere: {error}", color = discord.Color.red()))
 
             
     ##############################################################################################
@@ -108,21 +101,21 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value="""
 :white_check_mark: `>toggleWelcomer`:
-    To Toggle Welcomer On or Off
+    > To Toggle Welcomer On or Off
 
 :scroll: `>SetWelcomeMessage <message>`:
-    To Set the Welcome Message
-    Using `|user|` in message will replace it with a mention of the new user    -> Important
-    Using `|guild|` in message will replace it with the name of the server
+    > To Set the Welcome Message
+    > Using `|user|` in message will replace it with a mention of the new user    -> Important
+    > Using `|guild|` in message will replace it with the name of the server
 
 :scroll: `>SetLeaveMessage <message>`:
-    To Set the Leave Message
-    Using `|user|` in message will replace it with User's Name                  -> Important
-    Using `|guild|` in message will replace it with Server's Name
+    > To Set the Leave Message
+    > Using `|user|` in message will replace it with User's Name                  -> Important
+    > Using `|guild|` in message will replace it with Server's Name
 
 :dart: `>setWelcomeChannel <Channel>`:
-    To Set the channel to send Welcome message in
-    Mention channel as #<channel name>
+    > To Set the channel to send Welcome message in
+    > Mention channel as #<channel name>
     """
         )
 
@@ -132,21 +125,21 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value="""
 :bar_chart: `>stats`
-    To Get the stats for the Bot
+    > To Get the stats for the Bot
 
 :face_with_monocle: `>av <user>`
-    To Get the Avatar of <user>
-    if nothing is passed it will send the authors avatar
+    > To Get the Avatar of <user>
+    > if nothing is passed it will send the authors avatar
 
 :eyes: `>about <user>`
-    To Get the info of <user>
-    if nothing is passed it will send the authors info
+    > To Get the info of <user>
+    > if nothing is passed it will send the authors info
 
 :relieved: `>credits`
-    To Get the Credits of the bot
+    > To Get the Credits of the bot
 
 :moneybag:`>donate`
-    To get patreon link of HackArmour
+    > To get patreon link of HackArmour
 """
             )
 
@@ -156,19 +149,19 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value="""
 :video_game: `>ttt <user>`:
-    To Start a game of Tic Tac Toe with <user>
+    > To Start a game of Tic Tac Toe with <user>
 
 :thumbsup: `>accept <user>`:
-    To Accept an invitation for Tic Tac Toe with <user>
+    > To Accept an invitation for Tic Tac Toe with <user>
 
 :thumbsdown: `>unaccept <user>`:
-    To Unaccept an invitation for Tic Tac Toe with <user>
+    > To Unaccept an invitation for Tic Tac Toe with <user>
 
 :negative_squared_cross_mark: `>exit <user>`:
-    To Force Exit a match between author and <user> [Requires both players to run the command]
+    > To Force Exit a match between author and <user> [Requires both players to run the command]
 
 :white_check_mark: `>place <number>`
-    To Place an X or O on <number> on the board
+    > To Place an X or O on <number> on the board
 """
             )
 
@@ -177,36 +170,36 @@ class Miscellaneous(commands.Cog):
                 name="MODERATION",
                 value="""
 :x: `>ban <user>`
-    To Ban <user>
+    > To Ban <user>
 
 :negative_squared_cross_mark: `>kick <user>`
-    To Kick <user>
+    > To Kick <user>
 
 :white_check_mark: `>unban <username>#<discriminator>`
-    To Unban the user passed in the function
+    > To Unban the user passed in the function
 
 :mute: `>mute <user> <time>`
-    To Mute <user> for <time>. 
-    Time: s, m, h, d, w
+    > To Mute <user> for <time>. 
+    > Time: s, m, h, d, w
 
 :loud_sound: `>unmute <user>`
-    To Unmute <user>
+    > To Unmute <user>
 
 :ninja: `>setLogChannel <channel>`
-    To Set the Log Channel on the server
-    It will not send logs until this is not set
+    > To Set the Log Channel on the server
+    > It will not send logs until this is not set
 
 :white_check_mark: `>toggleLog`
-    To Toggle Logs
-    It will not send logs until this is not done
+    > To Toggle Logs
+    > It will not send logs until this is not done
     
 :ninja: `>toggleMod`
-    To toggle AutoMod Feature of the bot 
-    AutoMod: Delete message if it contains profane words
+    > To toggle AutoMod Feature of the bot 
+    > AutoMod: Delete message if it contains profane words
 
 :x: `>purge <number>`
-    It will clear <number> amount of messages
-    Other aliases: `>clear`, `>delete`
+    > It will clear <number> amount of messages
+    > Other aliases: `>clear`, `>delete`
 """,
                 inline=False
             )
@@ -216,30 +209,25 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value="""
 :thinking_face: `>8ball <question>`
-    Give a random answer for <question>
+    > Give a random answer for <question>
 
 :joy: `>meme`
-    Sends a meme from Reddit!
+    > Sends a meme from Reddit!
 
 :rofl: `>memes <number>`
-    Sends <number> amount of memes!!
+    > Sends <number> amount of memes!!
+    
+:regional_indicator_f: `>F <reason>`
+    > To press F for <reason> [reason is optional]
+    
+:coin: `>coin`
+    > To toss a coin
 """
             )
 
         else:
             embed.add_field(name="I can't Understand what do you mean", value="Use just `>help` without any arguements")
 
-        await ctx.send(embed=embed)
-
-    #############################################################################################
-
-    ## ==> 8BALL
-    #############################################################################################
-
-    @commands.command(aliases=['8ball'])
-    async def eightBall(self, ctx: commands.Context, *, question) -> None:
-        embed = discord.Embed(color=ctx.author.color, title="8BALL", description=f"Question - {question}?\nAnswer - {choice(self.EIGHT_BALL_ANSWERS)}")
-        embed.set_author(name=str(ctx.author)[:-5], icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
     #############################################################################################
@@ -259,31 +247,6 @@ class Miscellaneous(commands.Cog):
         embed_.add_field(inline=False,name='Total Servers',value=f'Playing in {str(len(self.bot.guilds))} servers')
         embed_.set_thumbnail(url=ctx.guild.icon_url)
         await ctx.send(embed = embed_)
-
-    #############################################################################################
-
-    ## ==> MEMES
-    #############################################################################################
-
-    @commands.command()
-    async def meme(self,ctx: commands.Context) -> None:
-        r = requests.get("https://memes.blademaker.tv/api?lang=en")
-        res = r.json()
-        embed_ = discord.Embed(title=res['title'],color=discord.Color.blue())
-        embed_.set_image(url = res["image"])
-        embed_.set_author(name = ctx.author,icon_url = ctx.author.avatar_url)
-        await ctx.send(embed = embed_)
-
-    @commands.command()
-    async def memes(self, ctx: commands.Context, number: int = 3) -> None:
-        if number <= 3:
-            for i in range(number):
-                r = requests.get("https://memes.blademaker.tv/api?lang=en")
-                res = r.json()
-                embed_ = discord.Embed(title=res['title'], color=discord.Color.blue())
-                embed_.set_image(url = res["image"])
-                embed_.set_author(name = ctx.author,icon_url = ctx.author.avatar_url)
-                await ctx.send(embed = embed_)
 
     #############################################################################################
 
@@ -332,7 +295,7 @@ class Miscellaneous(commands.Cog):
         await ctx.send(embed=emb_)
 
     ############################################################################################
-
+    
 ## ==> ADDING THE COG TO BOT
 #############################################################################################
 
