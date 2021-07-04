@@ -53,7 +53,7 @@ class Miscellaneous(commands.Cog):
 
     @commands.command()
     async def credits(self, ctx: commands.Context) -> None:
-        embed = discord.Embed(color = ctx.author.color, title = "CREDITS", description="Developed By [ᴛʜᴇ ᴇᴍᴘᴇʀᴏʀ] and PHÄÑTÖM KÑÏGHT \nMade with ~ 1500 lines of Code")
+        embed = discord.Embed(color = ctx.author.color, title = "CREDITS", description="Developed By [ᴛʜᴇ ᴇᴍᴘᴇʀᴏʀ]#5417 and PHANTOM KNIGHT#0002 \nMade with ~ 1500 lines of Code")
         embed.set_footer(text="Thanks to the Hack Armour team for letting us make this abomination")
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/818117979513290757/849943570185453588/711a01459ddc9903d8845fb04dcea24a.jpg")
         await ctx.send(embed=embed)
@@ -87,12 +87,11 @@ class Miscellaneous(commands.Cog):
                 value="Type any of the commands below to get help:",
                 inline=False
             )
-            embed.add_field(name="`>help Welcomer`",value="To Get Help with Welcomer Commands")
-            embed.add_field(name="`>help Moderation`",value="To Get Help with Moderation Commands")
-            embed.add_field(name="`>help Tic Tac Toe`",value="To Get Help with Tic Tac Toe Commands")
-            embed.add_field(name="`>help Fun`",value="To Get Help with Fun Commands")
-            embed.add_field(name="`>help Miscellaneous`", value="To Get Help with Other Commands")
-
+            embed.add_field(name=":hand_splayed: >help Welcomer",value="> To Get Help with Welcomer Commands", inline=False)
+            embed.add_field(name=":face_with_monocle: >help Moderation",value="> To Get Help with Moderation Commands", inline=False)
+            embed.add_field(name="<:ttt:861199187593134090> >help Tic Tac Toe",value="> To Get Help with Tic Tac Toe Commands", inline=False)
+            embed.add_field(name="<a:KEKS:837519298926346291> >help Fun",value="> To Get Help with Fun Commands", inline=False)
+            embed.add_field(name=":o2: >help Miscellaneous", value="> To Get Help with Other Commands", inline=False)
 
 
         elif thing.lower() == "welcomer":
@@ -272,19 +271,7 @@ class Miscellaneous(commands.Cog):
         await ctx.send(embed=embed)
 
     #############################################################################################
-
-    ## ==> GET EMOJI IDS
-    ############################################################################################
-
-    @commands.command()
-    async def emojis(self, ctx: commands.Context) -> None:
-        embed = discord.Embed(title="EMOJIS", color = ctx.author.color)
-        for emoji in ctx.guild.emojis:
-            embed.add_field(name=str(emoji), value=f"\{str(emoji)}")
-        await ctx.send(embed=embed)
-
-    ############################################################################################
-
+    
     ## ==> DONATE COMMAND
     ############################################################################################
 
