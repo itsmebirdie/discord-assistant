@@ -38,7 +38,7 @@ class TicTacToe(commands.Cog):
         ## ==> ASK FOR A GAME
         ##############################################################################################
         
-        message = await ctx.send(embed=discord.Embed(title="Tic Tac Toe *REVAMP*", description=f"{p2.mention}, {ctx.author.mention} invites you to a game of Tic Tac Toe!\nReact with ✋ to accept the invite!"))
+        message = await ctx.send(embed=discord.Embed(title="TIC TAC TOE *REVAMP*", description=f"{p2.mention}, {ctx.author.mention} invites you to a game of Tic Tac Toe!\nReact with ✋ to accept the invite!"))
         await message.add_reaction("✋")
         try:
             await self.bot.wait_for("reaction_add", timeout=25.0, check=lambda reaction, user: user == p2 and str(reaction.emoji) == "✋")
@@ -274,7 +274,9 @@ class TicTacToe(commands.Cog):
             self.data[f"{ctx.author.id} & {p2.id}"]["TURN_NO"] += 1
             
             ##############################################################################################
-            
+        
+        await ctx.send(f"Final Board:\n{''.join(_current_board)}")    
+        
         ##############################################################################################
 
 def setup(bot:commands.Bot):
