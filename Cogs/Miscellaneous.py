@@ -92,7 +92,20 @@ class Miscellaneous(commands.Cog):
             embed.add_field(name=":game_die: >help Tic Tac Toe",value="> To Get Help with Tic Tac Toe Commands", inline=False)
             embed.add_field(name=":grin: >help Fun",value="> To Get Help with Fun Commands", inline=False)
             embed.add_field(name=":o2: >help Miscellaneous", value="> To Get Help with Other Commands", inline=False)
+            embed.add_field(name=":notepad_spiral: >help Embeds", value="> To Get Help with Embed Commands", inline=False)
 
+
+        elif thing.lower() == "embeds":
+            embed.add_field(
+                name="**EMBEDS**",
+                inline=False,
+                value="""
+:notepad_spiral: `>embed <mention_channel>`
+    > Sends an embed at <mention_channel>
+    > Bot will Prompt you for the values
+    > You can enter the value as "none" if you don't want to enter it in `description`, `number of fields` and `footer`
+"""
+            )
 
         elif thing.lower() == "welcomer":
             embed.add_field(

@@ -13,8 +13,12 @@ ___
 
 > [TheEmperor342](https://github.com/TheEmperor342)\
 > [PhantomKnight287](https://github.com/PhantomKnight287)
+___
 
----
+## Requirements
+> discord.py == 1.7.3
+> requests == 2.25.1
+___
 ## For people new to Git who want to contribute
 Please check [PR creation guide](https://thebirdie.codes/creating-a-pr-on-github) for documentation on how to create a Pull request
 

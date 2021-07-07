@@ -48,7 +48,7 @@ class TicTacToe(commands.Cog):
             
         ##############################################################################################
             
-        await message.edit(embed=discord.Embed(title="THE GAME HAS BEGUN!", description="Please Wait"))
+        await message.edit(embed=discord.Embed(title="THE GAME HAS BEGUN!", description="Please Wait for the bot to react with all emojis before entering your choice"))
         await message.clear_reactions()
         await asyncio.sleep(2.0)
         await message.clear_reactions()
