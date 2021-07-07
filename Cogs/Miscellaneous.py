@@ -149,18 +149,7 @@ class Miscellaneous(commands.Cog):
                 value="""
 :video_game: `>ttt <user>`:
     > To Start a game of Tic Tac Toe with <user>
-
-:thumbsup: `>accept <user>`:
-    > To Accept an invitation for Tic Tac Toe with <user>
-
-:thumbsdown: `>unaccept <user>`:
-    > To Unaccept an invitation for Tic Tac Toe with <user>
-
-:negative_squared_cross_mark: `>exit <user>`:
-    > To Force Exit a match between author and <user> [Requires both players to run the command]
-
-:white_check_mark: `>place <number>`
-    > To Place an X or O on <number> on the board
+    > Please wait until the bot reacts with all the emojis before you select one
 """
             )
 
