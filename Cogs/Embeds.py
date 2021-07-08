@@ -48,7 +48,8 @@ class Embeds(commands.Cog):
         try:
             _no_of_fields = int(_no_of_fields.content) if _no_of_fields.content.strip().lower() != "none" else 0
         except ValueError:
-            await ctx.send(embed=discord.Embed(title="Whoops!", description="Please enter the number of fields in an Integer format!", color=discord.Color.red()))
+            await ctx.send(embed=discord.Embed(title="Whoops!", description="Please enter the number of fields in an Integer format!\nExiting Command; Please run the command again", color=discord.Color.red()))
+            
             return
         
         ##############################################################################################
