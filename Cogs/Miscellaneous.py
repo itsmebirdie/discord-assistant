@@ -85,12 +85,12 @@ class Miscellaneous(commands.Cog):
                 value="Type any of the commands below to get help:",
                 inline=False
             )
-            embed.add_field(name=":hand_splayed: >help Welcomer",value="> To Get Help with Welcomer Commands", inline=False)
-            embed.add_field(name=":face_with_monocle: >help Moderation",value="> To Get Help with Moderation Commands", inline=False)
-            embed.add_field(name=":game_die: >help Tic Tac Toe",value="> To Get Help with Tic Tac Toe Commands", inline=False)
-            embed.add_field(name=":grin: >help Fun",value="> To Get Help with Fun Commands", inline=False)
-            embed.add_field(name=":o2: >help Miscellaneous", value="> To Get Help with Other Commands", inline=False)
-            embed.add_field(name=":notepad_spiral: >help Embeds", value="> To Get Help with Embed Commands", inline=False)
+            embed.add_field(name=":hand_splayed: >help Welcomer",value=f"```\nTo Get Help with Welcomer Commands\n```\n{'■'*15}\n", inline=False)
+            embed.add_field(name=":face_with_monocle: >help Moderation",value=f"```\nTo Get Help with Moderation Commands\n```\n{'■'*15}\n", inline=False)
+            embed.add_field(name=":game_die: >help Tic Tac Toe",value=f"```\nTo Get Help with Tic Tac Toe Commands\n```\n{'■'*15}\n", inline=False)
+            embed.add_field(name=":grin: >help Fun",value=f"```\nTo Get Help with Fun Commands\n```\n{'■'*15}\n", inline=False)
+            embed.add_field(name=":o2: >help Miscellaneous", value=f"```\nTo Get Help with Other Commands\n```\n{'■'*15}\n", inline=False)
+            embed.add_field(name=":notepad_spiral: >help Embeds", value=f"```\nTo Get Help with Embed Commands\n```\n{'■'*15}", inline=False)
 
 
         elif thing.lower() == "embeds":
@@ -99,9 +99,13 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value="""
 :notepad_spiral: `>embed <mention_channel>`
-    > Sends an embed at <mention_channel>
-    > Bot will Prompt you for the values
-    > You can enter the value as "none" if you don't want to enter it in `description`, `number of fields` and `footer`
+```
+Sends an embed at <mention_channel>
+    
+Bot will Prompt you for the values
+    
+You can enter the value as "none" if you don't want to enter it in "description", "number of fields" and "footer"
+```
 """
             )
         
@@ -111,11 +115,17 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value=f"""
 **L**ACK **O**F **N**ITRO
+
 {choice([":laughing:", ":grinning:", ":smiley:", ":smile:", ":grin:", ":laughing:"])} `>lon <emoji name>`
-    > Sends an emoji with name <emoji name> if it exists in the configuration file
+```
+Sends an emoji with name <emoji name> if it exists in the configuration file
+```
+{'■'*15}
 
 :ballot_box_with_check: `>lonall`
-    > Get all emojis which can be used
+```
+Get list of all emojis which can be used
+```
 """
         )
         
@@ -123,23 +133,39 @@ class Miscellaneous(commands.Cog):
             embed.add_field(
                 name="**WELCOMER**",
                 inline=False,
-                value="""
+                value=f"""
 :white_check_mark: `>toggleWelcomer`:
-    > To Toggle Welcomer On or Off
+```
+To Toggle Welcomer On or Off
+```
+{'■'*15}
 
 :scroll: `>SetWelcomeMessage <message>`:
-    > To Set the Welcome Message
-    > Using `|user|` in message will replace it with a mention of the new user    -> Important
-    > Using `|guild|` in message will replace it with the name of the server
+```
+To Set the Welcome Message
+
+Using "|user|" in message will replace it with a mention of the new user
+
+Using "|guild|" in message will replace it with the name of the server
+```
+{'■'*15}
 
 :scroll: `>SetLeaveMessage <message>`:
-    > To Set the Leave Message
-    > Using `|user|` in message will replace it with User's Name                  -> Important
-    > Using `|guild|` in message will replace it with Server's Name
+```
+To Set the Leave Message
+
+Using "|user|" in message will replace it with User's Name
+
+Using "|guild|" in message will replace it with Server's Name
+```
+{'■'*15}
 
 :dart: `>setWelcomeChannel <Channel>`:
-    > To Set the channel to send Welcome message in
-    > Mention channel as #<channel name>
+```
+To Set the channel to send Welcome message in
+
+Mention channel as #<channel name>
+```
     """
         )
 
@@ -147,23 +173,39 @@ class Miscellaneous(commands.Cog):
             embed.add_field(
                 name="MISCELLANEOUS COMMANDS",
                 inline=False,
-                value="""
+                value=f"""
 :bar_chart: `>stats`
-    > To Get the stats for the Bot
+```
+To Get the stats for the Bot
+```
+{'■'*15}
 
 :face_with_monocle: `>av <user>`
-    > To Get the Avatar of <user>
-    > if nothing is passed it will send the authors avatar
+```
+To Get the Avatar of <user>
+
+If nothing is passed it will send the authors avatar
+```
+{'■'*15}
 
 :eyes: `>about <user>`
-    > To Get the info of <user>
-    > if nothing is passed it will send the authors info
+```
+To Get the info of <user>
+
+If nothing is passed it will send the authors info
+```
+{'■'*15}
 
 :relieved: `>credits`
-    > To Get the Credits of the bot
+```
+To Get the Credits of the bot
+```
+{'■'*15}
 
 :moneybag:`>donate`
-    > To get patreon link of HackArmour
+```
+To get patreon link of HackArmour
+```
 """
             )
 
@@ -173,46 +215,76 @@ class Miscellaneous(commands.Cog):
                 inline=False,
                 value="""
 :video_game: `>ttt <user>`:
-    > To Start a game of Tic Tac Toe with <user>
-    > Please wait until the bot reacts with all the emojis before you select one
+```
+To Start a game of Tic Tac Toe with <user>
+
+Please wait until the bot reacts with all the emojis before you select one
+```
 """
             )
 
         elif thing.lower() in ["moderation", "mod"]:
             embed.add_field(
                 name="MODERATION",
-                value="""
+                value=f"""
 :x: `>ban <user>`
-    > To Ban <user>
+```
+To Ban <user>
+```
+{'■'*15}
 
 :negative_squared_cross_mark: `>kick <user>`
-    > To Kick <user>
+```
+To Kick <user>
+```
+{'■'*15}
 
 :white_check_mark: `>unban <username>#<discriminator>`
-    > To Unban the user passed in the function
+```
+To Unban the user passed in the function
+```
+{'■'*15}
 
 :mute: `>mute <user> <time>`
-    > To Mute <user> for <time>. 
-    > Time: s, m, h, d, w
+```
+To Mute <user> for <time>. 
+
+Time: s, m, h, d, w
+```
+{'■'*15}
 
 :loud_sound: `>unmute <user>`
-    > To Unmute <user>
+```
+To Unmute <user>
+```
+{'■'*15}
 
 :ninja: `>setLogChannel <channel>`
-    > To Set the Log Channel on the server
-    > It will not send logs until this is not set
+```
+To Set the Log Channel on the server
+
+It will not send logs until this is not set
+```
+{'■'*15}
 
 :white_check_mark: `>toggleLog`
-    > To Toggle Logs
-    > It will not send logs until this is not done
+```
+To Toggle Logs
+
+The Bot will not send logs until this is not done
+```
+{'■'*15}
     
 :ninja: `>toggleMod`
-    > To toggle AutoMod Feature of the bot 
-    > AutoMod: Delete message if it contains profane words
+```
+To toggle AutoMod Feature of the bot 
+```
+{'■'*15}
 
 :x: `>purge <number>`
-    > It will clear <number> amount of messages
-    > Other aliases: `>clear`, `>delete`
+```
+It will clear <number> amount of messages
+```
 """,
                 inline=False
             )
@@ -220,21 +292,37 @@ class Miscellaneous(commands.Cog):
             embed.add_field(
                 name="FUN",
                 inline=False,
-                value="""
+                value=f"""
 :thinking_face: `>8ball <question>`
-    > Give a random answer for <question>
+```
+Give a random answer for <question>
+```
+{'■'*15}
 
 :joy: `>meme`
-    > Sends a meme from Reddit!
+```
+Sends a meme from Reddit
+```
+{'■'*15}
 
 :rofl: `>memes <number>`
-    > Sends <number> amount of memes!!
+```
+Sends <number> amount of memes
+
+Maximum: 3
+```
+{'■'*15}
     
 :regional_indicator_f: `>F <reason>`
-    > To press F for <reason> [reason is optional]
+```
+To press F for <reason> [reason is optional]
+```
+{'■'*15}
     
 :coin: `>coin`
-    > To toss a coin
+```
+To toss a coin
+```
 """
             )
 
