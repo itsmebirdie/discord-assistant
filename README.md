@@ -16,8 +16,9 @@ ___
 ___
 
 ## Requirements
-> discord.py == 1.7.3
-> requests == 2.25.1
+- discord.py == 1.7.3
+- dpymenus == 2.1.5
+- requests == 2.25.1
 ___
 ## For people new to Git who want to contribute
 Please check [PR creation guide](https://thebirdie.codes/creating-a-pr-on-github) for documentation on how to create a Pull request

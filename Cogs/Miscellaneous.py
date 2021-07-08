@@ -1,6 +1,7 @@
 import discord, sys, datetime, json
 from discord.ext import commands
 from time import time
+from random import choice
 
 class Miscellaneous(commands.Cog):
     def __init__(self,bot: commands.Bot) -> None:
@@ -106,7 +107,21 @@ class Miscellaneous(commands.Cog):
     > You can enter the value as "none" if you don't want to enter it in `description`, `number of fields` and `footer`
 """
             )
+        
+        elif thing.lower() == "lon":
+            embed.add_field(
+                name = "**LON**",
+                inline=False,
+                value=f"""
+**L**ACK **O**F **N**ITRO
+{choice([":laughing:", ":grinning:", ":smiley:", ":smile:", ":grin:", ":laughing:"])} `>lon <emoji name>`
+    > Sends an emoji with name <emoji name> if it exists in the configuration file
 
+:ballot_box_with_check: `>lonall`
+    > Get all emojis which can be used
+"""
+        )
+        
         elif thing.lower() == "welcomer":
             embed.add_field(
                 name="**WELCOMER**",
@@ -131,7 +146,7 @@ class Miscellaneous(commands.Cog):
     """
         )
 
-        elif thing.lower() == "miscellaneous":
+        elif thing.lower() in ["miscellaneous", "misc"]:
             embed.add_field(
                 name="MISCELLANEOUS COMMANDS",
                 inline=False,
@@ -155,7 +170,7 @@ class Miscellaneous(commands.Cog):
 """
             )
 
-        elif thing.lower() == "tic tac toe":
+        elif thing.lower() in ["tic tac toe", "tictactoe", "ttt"]:
             embed.add_field(
                 name="TIC TAC TOE",
                 inline=False,
@@ -166,7 +181,7 @@ class Miscellaneous(commands.Cog):
 """
             )
 
-        elif thing.lower() == "moderation":
+        elif thing.lower() in ["moderation", "mod"]:
             embed.add_field(
                 name="MODERATION",
                 value="""
