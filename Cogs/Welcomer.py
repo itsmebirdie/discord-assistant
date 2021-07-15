@@ -5,11 +5,18 @@ from discord.ext import commands
 class Welcomer(commands.Cog):
     def __init__(self,bot: commands.Bot) -> None:
         self.bot = bot
-        # Read welcomer config
+        ## ==> READING CONFIGURATION OF WELCOMER
+        #############################################################################################
+        
         with open("Configuration/WelcomerConfig.json") as f:
             self.CONFIG = json.loads(f.read())
         
-    # Welcome the members on join
+        #############################################################################################
+        
+            
+    ## ==> TO WELCOME MEMBERS
+    #############################################################################################
+    
     @commands.Cog.listener()
     async def on_member_join(self,ctx) -> None:
         if str(ctx.guild.id) in self.CONFIG.keys():
@@ -24,7 +31,11 @@ class Welcomer(commands.Cog):
                 channel = self.bot.get_channel(self.CONFIG[str(ctx.guild.id)]["channel"])
                 await channel.send(self.CONFIG[str(ctx.guild.id)]["leave_message"].replace("|user|",str(ctx)).replace("|guild|",str(ctx.guild)))
                 
-    # Toggle the welcome feature
+    #############################################################################################
+        
+    ## ==> TO TOGGLE WELCOMER
+    #############################################################################################
+    
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def toggleWelcomer(self,ctx: commands.Context) -> None:
@@ -44,7 +55,11 @@ class Welcomer(commands.Cog):
             
         await ctx.send(embed=discord.Embed(title="WELCOMER",description=desc, color=color))
         
-    # Set the welcome message
+    #############################################################################################
+    
+    ## ==> TO SET WELCOME MESSAGE
+    #############################################################################################
+    
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def SetWelcomeMessage(self,ctx: commands.Context,*, msg: str) -> None:
@@ -64,7 +79,11 @@ class Welcomer(commands.Cog):
             
             await ctx.send(embed=discord.Embed(color=discord.Color.green(),description=f":white_check_mark: Welcome Message Updated!\nSet to: {msg.replace('|user|',ctx.author.mention).replace('|guild|', str(ctx.guild))}",title="WELCOMER"))
             
-    # Set the leave message
+    #############################################################################################
+    
+    ## ==> TO SET LEAVE MESSAGE
+    #############################################################################################
+    
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def SetLeaveMessage(self,ctx: commands.Context,*, msg: str) -> None:
@@ -85,7 +104,11 @@ class Welcomer(commands.Cog):
             
             await ctx.send(embed=discord.Embed(color=discord.Color.green(),description=f":white_check_mark: Leave Message Updated!\nSet to: {msg.replace('|user|',ctx.author.mention).replace('|guild|', str(ctx.guild))}",title="WELCOMER"))
 
-    # Set the welcome channel
+    #############################################################################################
+               
+    ## ==> TO SET CHANNEL TO SEND WELCOME MESSAGE
+    #############################################################################################
+    
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def setWelcomeChannel(self,ctx: commands.Context,channel: discord.TextChannel) -> None:
@@ -104,4 +127,6 @@ class Welcomer(commands.Cog):
             
             await ctx.send(embed=discord.Embed(color=discord.Color.green(),description=f"The Channel to send welcome messages is now set to <#{channel.id}> !",title="WELCOMER"))
     
+    #############################################################################################
+
 def setup(bot: commands.Bot) -> None: bot.add_cog(Welcomer(bot))

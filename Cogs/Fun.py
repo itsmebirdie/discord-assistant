@@ -12,7 +12,7 @@ class Fun(commands.Cog):
             "Nah", "No", 'Nope', 'Never', "I don't think so",
             "idk", "Maybe", "ig", "I'm bored", "You're annoying"
         ]
-        
+          
     ## ==> COIN FLIP
     #############################################################################################
     

@@ -93,7 +93,7 @@ class Miscellaneous(commands.Cog):
             embed.add_field(name=":notepad_spiral: >help Embeds", value=f"```\nTo Get Help with Embed Commands\n```\n{'■'*15}", inline=False)
 
 
-        elif thing.lower() == "embeds":
+        elif thing.lower() in ["embeds", "embed"]:
             embed.add_field(
                 name="**EMBEDS**",
                 inline=False,
