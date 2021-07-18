@@ -103,7 +103,7 @@ class music_cog(commands.Cog):
             self.is_playing = False
     
     # Play - Adds to queue or Plays music
-    @commands.command()
+    @commands.command(aliases=['play'])
     async def p(self, ctx, *args):
         for word in args:
             if word.startswith("'") or word.startswith('"'):
@@ -138,7 +138,7 @@ class music_cog(commands.Cog):
                     await self.play_music()
     
     # Queue - show the music queue
-    @commands.command()
+    @commands.command(aliases=['queue'])
     async def q(self, ctx):
         queue = []
         # go through a music_queue and add it to queue

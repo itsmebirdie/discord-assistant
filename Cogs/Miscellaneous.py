@@ -14,8 +14,7 @@ class Miscellaneous(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error) -> None:
-        if isinstance(error, commands.CommandNotFound):
-            await ctx.send(embed=discord.Embed(title="Whoops", description="Command Not Found", color=discord.Color.red()))        
+        if isinstance(error, commands.CommandNotFound): pass        
         elif isinstance(error, commands.MissingRequiredArgument):
             if str(ctx.command) == "ban" or str(ctx.command) == "kick":
                 await ctx.send(embed=discord.Embed(title="Whoops", description=f"Tell me the user you want to {str(ctx.command)} too!", color=discord.Color.red()))
@@ -91,8 +90,51 @@ class Miscellaneous(commands.Cog):
             embed.add_field(name=":grin: >help Fun",value=f"```\nTo Get Help with Fun Commands\n```\n{'■'*15}\n", inline=False)
             embed.add_field(name=":o2: >help Miscellaneous", value=f"```\nTo Get Help with Other Commands\n```\n{'■'*15}\n", inline=False)
             embed.add_field(name=":notepad_spiral: >help Embeds", value=f"```\nTo Get Help with Embed Commands\n```\n{'■'*15}", inline=False)
+            embed.add_field(name=":musical_note: >help Music", value=f"```\nTo Get Help with Music Commands\n```\n{'■'*15}", inline=False)
+            embed.add_field(name=f"""{choice([":laughing:", ":grinning:", ":smiley:", ":smile:", ":grin:", ":laughing:"])} >help LON""", value=f"```\nTo Get Help with LON Commands\n```""", inline=False)
 
+        elif thing.lower() == "music":
+            embed.add_field(
+                name="**MUSIC**",
+                inline=False,
+                value = f"""
+:headphones: `>p <musicName>`
+```
+To play music
+```
+{'■'*15}
 
+:notepad_spiral: `>q`
+```
+To show the current Queue
+```
+{'■'*15}
+
+:arrow_forward: `>skip`
+```
+To skip the current music
+```
+{'■'*15}
+
+:pause_button: `>pause`
+```
+To pause the music
+```
+{'■'*15}
+
+:play_pause: `>resume`
+```
+To resume the playback of music
+```
+{'■'*15}
+
+:stop_button: `>stop`
+```
+To Stop the music
+```
+"""
+            )
+        
         elif thing.lower() in ["embeds", "embed"]:
             embed.add_field(
                 name="**EMBEDS**",
@@ -109,7 +151,7 @@ You can enter the value as "none" if you don't want to enter it in "description"
 """
             )
         
-        elif thing.lower() == "lon":
+        elif thing.lower() in ['lon', 'lackofnitro', 'lack of nitro']:
             embed.add_field(
                 name = "**LON**",
                 inline=False,

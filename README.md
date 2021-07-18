@@ -13,12 +13,14 @@ ___
 
 > [TheEmperor342](https://github.com/TheEmperor342)\
 > [PhantomKnight287](https://github.com/PhantomKnight287)
+> [Hrithik326](https://github.com/Hrithik326)
 ___
 
 ## Requirements
 - discord.py == 1.7.3
 - dpymenus == 2.1.5
 - requests == 2.25.1
+- youtube_dl == 2021.6.6
 ___
 ## For people new to Git who want to contribute
 Please check [PR creation guide](https://thebirdie.codes/creating-a-pr-on-github) for documentation on how to create a Pull request
