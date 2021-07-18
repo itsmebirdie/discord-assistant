@@ -27,6 +27,15 @@ class music_cog(commands.Cog):
         # Current Voice Channel
         self.vc = ""
 
+        # Global embeds
+        self.embed_notplaying = discord.Embed(title="Music not playing",color=0x1ee0eb)
+        self.embed_pause = discord.Embed(title="Music Paused",color=0x1ee0eb)
+        self.embed_paused = discord.Embed(title="Music already paused",color=0x1ee0eb)
+        self.embed_ispaused = discord.Embed(title="Music is paused, resume first")
+        self.embed_resume = discord.Embed(title="Music Resumed",color=0x1ee0eb)
+        self.embed_isresumed = discord.Embed(title="Music not paused")
+        self.embed_stop = discord.Embed(title="Music Disconnected",color=0x1ee0eb)
+
     def search_yt(self, item):
         with YoutubeDL(self.YDL_OPTIONS) as ydl:
             try:
@@ -103,8 +112,8 @@ class music_cog(commands.Cog):
             self.is_playing = False
     
     # Play - Adds to queue or Plays music
-    @commands.command()
-    async def p(self, ctx, *args):
+    @commands.command(aliases=["p"])
+    async def play(self, ctx, *args):
         for word in args:
             if word.startswith("'") or word.startswith('"'):
                 await ctx.reply("Invalid arguments")
@@ -116,8 +125,7 @@ class music_cog(commands.Cog):
             await ctx.reply("Connect to a voice channel!")
         
         elif self.vc != "" and self.vc.is_paused():
-            embed_ispaused = discord.Embed(title="Music is paused, resume first") 
-            await ctx.reply(embed=embed_ispaused)
+            await ctx.reply(embed=self.embed_ispaused)
             pass
 
         else:
@@ -127,7 +135,7 @@ class music_cog(commands.Cog):
 
             # To check if it is something other than a vid
             if type(song) == type(True):
-                await ctx.reply("Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream")
+                await ctx.reply("Incorrect format try another keyword.")
             
             else:
                 songTitle=song['title']
@@ -141,8 +149,8 @@ class music_cog(commands.Cog):
                     await self.play_music()
     
     # Queue - show the music queue
-    @commands.command()
-    async def q(self, ctx):
+    @commands.command(aliases=["q"])
+    async def queue(self, ctx):
         queue = []
         # go through a music_queue and add it to queue
         for i in range(0, len(self.music_queue)):
@@ -177,43 +185,48 @@ class music_cog(commands.Cog):
                 await ctx.reply(embed=embed_skip)
                 
                 await self.play_music()
-                
+
     # Pause
     @commands.command(aliases=['pa'])
     async def pause(self, ctx):
-        if self.vc.is_playing():
-            self.vc.pause()
-            embed_pause = discord.Embed(title="Music Paused",color=0x1ee0eb)
-            await ctx.reply(embed=embed_pause)
+        if self.vc != "" or self.vc != None and self.vc:
+            if self.vc.is_playing():
+                self.vc.pause()
+                await ctx.reply(embed=self.embed_pause)
+            else:
+                await ctx.reply(embed=self.embed_paused)
         else:
-            embed_notplaying = discord.Embed(title="Music already paused",color=0x1ee0eb)
-            await ctx.reply(embed=embed_notplaying)
-
+            await ctx.reply(embed=self.embed_notplaying)
 
     # Resume
-    @commands.command()
+    @commands.command(aliases=["re"])
     async def resume(self, ctx):
-        if self.vc.is_paused():
-            self.vc.resume()
-            embed_resume = discord.Embed(title="Music Resumed",color=0x1ee0eb)
-            await ctx.reply(embed=embed_resume)
+        if self.vc != "" or self.vc != None and self.vc:
+            if self.vc.is_paused():
+                self.vc.resume()
+                await ctx.reply(embed=self.embed_resume)
+            else:
+                
+                await ctx.reply(embed=self.embed_isresumed)
         else:
-            embed_isresumed = discord.Embed(title="Music not paused")
-            await ctx.reply(embed=embed_isresumed)
+            await ctx.reply(embed=self.embed_notplaying)
 
     # Stop
-    @commands.command(aliases=["disconnect", "dc"])
-    async def stop(self, ctx):
-        await self.vc.disconnect()
-        self.vc = ""
-        self.is_playing = False
+    @commands.command(aliases=["stop", "dc"])
+    async def disconnect(self, ctx):
+        if self.vc != "" or self.vc != None and self.vc:
+            await self.vc.disconnect()
+            self.vc = ""
+            self.is_playing = False
 
-        self.playing = ""
-        self.count1 = 0
+            self.playing = ""
+            self.count1 = 0
         
-        self.music_queue = []
-        embed_stop = discord.Embed(title="Music Stopped",color=0x1ee0eb)
-        await ctx.reply(embed=embed_stop)
+            self.music_queue = []
+            
+            await ctx.reply(embed=self.embed_stop)
+        else:
+            await ctx.reply(embed=self.embed_notplaying)
 
 def setup(bot):
     bot.add_cog(music_cog(bot))
