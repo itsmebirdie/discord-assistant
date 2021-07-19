@@ -184,18 +184,18 @@ class music_cog(commands.Cog):
     @commands.command(aliases=["s"])
     async def skip(self, ctx):
         if await self.check(ctx) == True:
-                # Stop playing the current music
-                self.vc.stop()
+            # Stop playing the current music
+            self.vc.stop()
 
-                if self.music_queue == []:
-                    await ctx.reply("There is no music in Queue.\nPlease add more music to the Queue.")
-                else:
-                    embed_skip = discord.Embed(color=discord.Colour.red())
-                    embed_skip.add_field(name="Skipped", value=self.playing)
-                    embed_skip.add_field(name="Now Playing", value=self.music_queue[0][0]['title'])
-                    await ctx.reply(embed=embed_skip)
+            if self.music_queue == []:
+                await ctx.reply("There is no music in Queue.\nPlease add more music to the Queue.")
+            else:
+                embed_skip = discord.Embed(color=discord.Colour.red())
+                embed_skip.add_field(name="Skipped", value=self.playing)
+                embed_skip.add_field(name="Now Playing", value=self.music_queue[0][0]['title'])
+                await ctx.reply(embed=embed_skip)
                 
-                    await self.play_music()
+                await self.play_music()
 
     # Pause
     @commands.command(aliases=['pa'])
