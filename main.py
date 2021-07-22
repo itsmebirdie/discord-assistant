@@ -7,7 +7,7 @@ from time import time
 TOKEN = input("Enter The Token of your bot: ")
 
 # Initialize the bot instance
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all(),case_insensitive=True)
+bot = commands.Bot(command_prefix=">", intents=discord.Intents.all(),case_insensitive=True)
 bot.remove_command("help")
 
 for i in os.listdir("Cogs"):
