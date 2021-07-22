@@ -81,7 +81,8 @@ class Miscellaneous(commands.Cog):
             embed.add_field(name=f"{'■'*15}\n:game_die: >help Tic Tac Toe",value=f"```\nTo Get Help with Tic Tac Toe Commands\n```\n", inline=False)
             embed.add_field(name=f"{'■'*15}\n:notepad_spiral: >help Embeds", value=f"```\nTo Get Help with Embed Commands\n```\n", inline=False)
             embed.add_field(name=f"{'■'*15}\n:alien: >help Lon", value=f"```\nTo Get Help with LON Commands\n```\n", inline=False)
-
+            embed.add_field(name=f"{'■'*15}\n:alien: >help Leveling", value= f"```\nTo Get Gelp with Leveling Commands\n```", inline=False)
+            
         elif thing.lower() == "welcomer":
             embed.add_field(
                 name="**WELCOMER**",
@@ -96,25 +97,20 @@ To Toggle Welcomer On or Off
 :scroll: `>SetWelcomeMessage <message>`:
 ```
 To Set the Welcome Message
-
 Using "|user|" in message will replace it with a mention of the new user
-
 Using "|guild|" in message will replace it with the name of the server
 ```
 {'■'*15}
 :scroll: `>SetLeaveMessage <message>`:
 ```
 To Set the Leave Message
-
 Using "|user|" in message will replace it with User's Name
-
 Using "|guild|" in message will replace it with Server's Name
 ```
 {'■'*15}
 :dart: `>setWelcomeChannel <Channel>`:
 ```
 To Set the channel to send Welcome message in
-
 Mention channel as #<channel name>
 ```
     """
@@ -155,14 +151,12 @@ To Unmute <user>
 :ninja: `>setLogChannel <channel>`
 ```
 To Set the Log Channel on the server
-
 It will not send logs until this is not set
 ```
 {'■'*15}
 :white_check_mark: `>toggleLog`
 ```
 To Toggle Logs
-
 The Bot will not send logs until this is not done
 ```
 {'■'*15}
@@ -250,7 +244,7 @@ Disconnects the bot from voice channel and clears the queue
 """
         )
 
-        elif thing.lower() in ["miscellaneous", "misc", "others"]:
+        elif thing.lower() in ["miscellaneous", "misc"]:
             embed.add_field(
                 name="MISCELLANEOUS COMMANDS",
                 inline=False,
@@ -264,15 +258,18 @@ To Get the stats for the Bot
 :face_with_monocle: `>av <user>`
 ```
 To Get the Avatar of <user>
-
 If nothing is passed it will send the authors avatar
 ```
 {'■'*15}
 :eyes: `>about <user>`
 ```
 To Get the info of <user>
-
 If nothing is passed it will send the authors info
+```
+{'■'*15}
+:relieved: `>credits`
+```
+To Get the Credits of the bot
 ```
 {'■'*15}
 :moneybag:`>donate`
@@ -290,7 +287,6 @@ To get patreon link of HackArmour
 :video_game: `>ttt <user>`:
 ```
 To Start a game of Tic Tac Toe with <user>
-
 Please wait until the bot reacts with all the emojis before you select one
 ```
 """
@@ -319,7 +315,6 @@ You can enter the value as "none" if you don't want to enter it in "description"
                 value=f"""
 {'■'*15}
 **L**ACK **O**F **N**ITRO
-
 {choice([":laughing:", ":grinning:", ":smiley:", ":smile:", ":grin:", ":laughing:"])} `>lon <emoji name>`
 ```
 Sends an emoji with name <emoji name> if it exists in the configuration file
@@ -331,6 +326,26 @@ Get list of all emojis which can be used
 ```
 """
         )
+        
+        elif thing.lower() in ["leveling"]:
+            embed.add_field(
+            name="**LEVELING**",
+            inline=False,
+            value=f"""
+{'■'*15}
+:arrow_up: `>rank <user: optional>`
+```
+To Get <user>'s rank card
+
+If nothing is passed the bot will send the author's rank card
+```
+{'■'*15}
+:hash: `>lb`
+```
+To Get the Leaderboard of the server
+```
+ """
+            )
 
         else:
             embed.add_field(name="I can't Understand what do you mean", value="Use just `>help` without any arguements")
