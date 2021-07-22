@@ -24,6 +24,9 @@ ___
 - disrank == 0.0.2
 - numpy == 1.21.1
 - pandas == 1.3.0
+
+## External Package requirements
+- ffmpeg
 ___
 ## For people new to Git who want to contribute
 Please check [PR creation guide](https://thebirdie.codes/creating-a-pr-on-github) for documentation on how to create a Pull request
