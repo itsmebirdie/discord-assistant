@@ -2,12 +2,15 @@ import discord,asyncio,json
 from discord.ext import commands
 
 
-class Logs(commands.Cog):
+class Moderation(commands.Cog):
     def __init__(self,bot):
         self.bot=bot
         with open("Configuration/ModConfig.json") as f: self.CONFIG = json.loads(f.read())
         self.illegal_words=['Nigger','Nigga','N1gg3r','N1gger','Nigg3r','N1gga','N1gg@','Dick','Fuck','F U C K','f u c k','gandu','gaandu','gaamdu','fuck','nigger','nigga','n1gg3r','n1gga','n1gg@','dick']
-        
+    
+    def rewrite(self) -> None:
+        with open("Configuration/ModConfig.json",'w') as f: json.dump(self.CONFIG, f, indent=4)
+    
     ## ==> THIS FUNCTION BANS CERTAIN WORDS. IF YOU WANT TO BAN SOME MORE WORDS, ADD THEM TO THE LIST ABOVE
     #############################################################################################
     
@@ -107,7 +110,7 @@ class Logs(commands.Cog):
             self.CONFIG[str(ctx.guild.id)]["ModEnabled"] = True if not self.CONFIG[str(ctx.guild.id)]["ModEnabled"] else False
         else:
             self.CONFIG[str(ctx.guild.id)] = {"ModEnabled":True}
-        with open("Configuration/ModConfig.json",'w') as f: json.dump(self.CONFIG, f, indent=4)
+        self.rewrite()
         enabledordisabled = 'enabled' if self.CONFIG[str(ctx.guild.id)]["ModEnabled"] else 'disabled'
         await ctx.send(embed=discord.Embed(title="MODERATION", description=f"The AutoMod Feature has been {enabledordisabled}!", color = ctx.author.color))
     
@@ -120,17 +123,17 @@ class Logs(commands.Cog):
         else:
             self.CONFIG[str(ctx.guild.id)] = {"channel": None, "toggled": True}
             
-        with open("Configuration/ModConfig.json",'w') as f: json.dump(self.CONFIG, f, indent=4)
+        self.rewrite()
         await ctx.send(embed=discord.Embed(color=ctx.author.color, title="MODERATION", description="Logs Have Been Toggled"))
     
     @commands.command()
     @commands.has_permissions(administrator=True)
-    async def setLogChannel(self,ctx: commands.Context, channel: discord.TextChannel):
+    async def setLogChannel(self,ctx: commands.Context, channel: commands.TextChannelConverter):
         if channel in ctx.guild.channels:
             if str(ctx.guild.id) not in self.CONFIG.keys(): self.CONFIG[str(ctx.guild.id)] = {"channel": channel.id, "toggled":False}
             else: self.CONFIG[str(ctx.guild.id)]["channel"] = channel.id
             
-            with open("Configuration/ModConfig.json",'w') as f: json.dump(self.CONFIG, f, indent=4)
+            self.rewrite()
             embed = discord.Embed(title="MODERATION",description=f"Logs set to <#{channel.id}> !", color=ctx.author.color)
             await ctx.send(embed=embed)
         else: return
@@ -280,4 +283,4 @@ class Logs(commands.Cog):
     #############################################################################################
 
 def setup(bot):
-    bot.add_cog(Logs(bot))
+    bot.add_cog(Moderation(bot))

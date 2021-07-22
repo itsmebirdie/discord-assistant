@@ -12,13 +12,21 @@ ___
 ## Main contributors:
 
 > [TheEmperor342](https://github.com/TheEmperor342)\
-> [PhantomKnight287](https://github.com/PhantomKnight287)
+> [PhantomKnight287](https://github.com/PhantomKnight287)\
+> [Hrithik326](https://github.com/Hrithik326)
 ___
 
 ## Requirements
 - discord.py == 1.7.3
 - dpymenus == 2.1.5
 - requests == 2.25.1
+- youtube_dl == 2021.6.6
+- disrank == 0.0.2
+- numpy == 1.21.1
+- pandas == 1.3.0
+
+## External Package requirements
+- ffmpeg
 ___
 ## For people new to Git who want to contribute
 Please check [PR creation guide](https://thebirdie.codes/creating-a-pr-on-github) for documentation on how to create a Pull request
