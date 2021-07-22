@@ -46,18 +46,6 @@ class Miscellaneous(commands.Cog):
             
     ##############################################################################################
 
-    ## ==> ABOUT
-    ##############################################################################################
-
-    @commands.command()
-    async def credits(self, ctx: commands.Context) -> None:
-        embed = discord.Embed(color = ctx.author.color, title = "CREDITS", description="Developed By [ᴛʜᴇ ᴇᴍᴘᴇʀᴏʀ]#5417 and PHANTOM KNIGHT#0002 \nMade with ~ 1500 lines of Code")
-        embed.set_footer(text="Thanks to the Hack Armour team for letting us make this abomination")
-        embed.set_thumbnail(url="https://media.discordapp.net/attachments/818117979513290757/849943570185453588/711a01459ddc9903d8845fb04dcea24a.jpg")
-        await ctx.send(embed=embed)
-
-    #############################################################################################
-
     ## ==> AVATAR
     #############################################################################################
 
@@ -262,7 +250,7 @@ Disconnects the bot from voice channel and clears the queue
 """
         )
 
-        elif thing.lower() in ["miscellaneous", "misc"]:
+        elif thing.lower() in ["miscellaneous", "misc", "others"]:
             embed.add_field(
                 name="MISCELLANEOUS COMMANDS",
                 inline=False,
@@ -285,11 +273,6 @@ If nothing is passed it will send the authors avatar
 To Get the info of <user>
 
 If nothing is passed it will send the authors info
-```
-{'■'*15}
-:relieved: `>credits`
-```
-To Get the Credits of the bot
 ```
 {'■'*15}
 :moneybag:`>donate`

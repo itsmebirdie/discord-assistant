@@ -32,6 +32,7 @@ async def reload(ctx,cog):
                 if i.endswith(".py"):
                     bot.unload_extension(F"Cogs.{i[:-3]}")
                     bot.load_extension(F"Cogs.{i[:-3]}")
+        print(f"{'#'*25} Reloaded all Cogs {'#'*25}")
         await ctx.send("Reloaded all Cogs")
     else:
         bot.unload_extension(F"Cogs.{cog}")
