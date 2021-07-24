@@ -5,6 +5,7 @@ import discord, os
 import pandas as pd
 import numpy as np
 from discord.ext import commands
+from discord.ext.commands.cooldowns import BucketType
 from random import randint
 from disrank.generator import Generator
 
