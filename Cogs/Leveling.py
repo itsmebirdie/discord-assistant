@@ -1,7 +1,7 @@
 ## ==> IMPORTS
 #############################################################################################
 
-import discord, os, asyncio
+import discord, os
 import pandas as pd
 import numpy as np
 from discord.ext import commands
@@ -51,7 +51,7 @@ class LevelingPD(commands.Cog):
             df = pd.read_csv(f"Configuration/Leveling.csv")
             df = df.astype({"xp": np.int64, "Level": np.int64, "TotalXP": np.int64})
         else: 
-            df = pd.DataFrame({"ID": [], "xp": [], "Level": [], "TotalXP": [], "cooldown":[]})
+            df = pd.DataFrame({"ID": [], "xp": [], "Level": [], "TotalXP": []})
             df = df.astype({"xp": np.int64, "Level": np.int64, "TotalXP": np.int64})
         
         #####################################################################################
@@ -63,10 +63,6 @@ class LevelingPD(commands.Cog):
         #####################################################################################
         
         if df_filt.shape[0] != 0:
-            
-            ## ==> CHECK IF THERE IS INCREMENT COOLDOWN
-            if df.set_index("ID", inplace=False).loc[f"{message.author.id} & {message.author.guild.id}", "cooldown"]:
-                return
             
             ## ==> CHANGE INDEX
             df.set_index("ID", inplace = True)
@@ -118,21 +114,9 @@ class LevelingPD(commands.Cog):
             df.set_index("ID", inplace=True)
         
         
-        ## ==> SET INCREMENT COOL DOWN
-        df.loc[f"{message.author.id} & {message.author.guild.id}", "cooldown"] = True
-        
         ## ==> EXPORT THE DATAFRAME        
         df.to_csv(f"Configuration/Leveling.csv", index=True)
-        
-        ## ==> SLEEP
-        await asyncio.sleep(60.0)
-        
-        ## ==> REMOVE THE INCREMENT COOLDOWN
-        df.loc[f"{message.author.id} & {message.author.guild.id}", "cooldown"] = False
-        
-        ## ==> EXPORT DF
-        df.to_csv(f"Configuration/Leveling.csv", index=True)
-        
+
     #########################################################################################
 
     @commands.command()

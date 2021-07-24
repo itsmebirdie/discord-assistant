@@ -27,7 +27,12 @@ class Fun(commands.Cog):
     
     @commands.command()
     async def f(self, ctx: commands.Context, *, reason: str = None) -> None:
-        await ctx.send(f"{ctx.author.name} has pressed f to pay respect for reason: {reason.replace('@everyone', 'everyone').replace('@here', 'here')}" if reason is not None else f"{ctx.author.name} has pressed f to pay respect")
+        
+        if "@" in reason:
+            await ctx.send("There are pings in this F command\nI don't want to get banned bruh")
+            return
+        else:
+            await ctx.send(f"{ctx.author.name} has pressed f to pay respect for reason: {reason.replace('@everyone', 'everyone').replace('@here', 'here')}" if reason is not None else f"{ctx.author.name} has pressed f to pay respect")
     
     #############################################################################################
     
