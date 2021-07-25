@@ -28,7 +28,10 @@ class Fun(commands.Cog):
     @commands.command()
     async def f(self, ctx: commands.Context, *, reason: str = None) -> None:
         
-        if "@" in reason:
+        if reason.__contains__("https://"):
+            await ctx.send("That reason contains a website\nF for you lol")
+            return
+        elif reason.__contains__("<@"):
             await ctx.send("There are pings in this F command\nI don't want to get banned bruh")
             return
         else:
