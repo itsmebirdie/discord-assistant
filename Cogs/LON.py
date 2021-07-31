@@ -41,7 +41,7 @@ class LON(commands.Cog):
             nl='\n'  #Declaring a newline character as new line/escape sequence characters are not allowed in curly braces of f string.
         menu=PaginatedMenu(ctx)  #Setting a menu with reactions to move back and forth between different embeds.
 
-        '''Creating three pages for the menu'''
+        # Creating three pages for the menu
         emb1=Page(title='Emojis',description=f'Page 1 out of 3.\n\n{(nl).join(allEmojis[i] for i in range(19))}',color=ctx.author.color)
         emb2=Page(title="Emojis",description=f'Page 2 out of 3.\n\n{(nl).join(allEmojis[i] for i in range(19,39))}',color=ctx.author.color)
         emb3=Page(title='Emojis',description=f'Page 3 out of 3.\n\n{(nl).join(allEmojis[i] for i in range(39,len(allEmojis)))}',color=ctx.author.color)
