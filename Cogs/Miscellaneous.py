@@ -1,13 +1,16 @@
 import discord, sys, datetime, json
 from discord.ext import commands
 from time import time
-from random import choice
+from dpymenus import PaginatedMenu, Page
 
 class Miscellaneous(commands.Cog):
     def __init__(self,bot: commands.Bot) -> None:
         self.bot = bot
         with open("Configuration/config.json") as f:
             self.STARTTIME = json.loads(f.read())["starttime"]
+        
+        with open("Configuration/Help.json") as f:
+            self.CONFIG = json.load(f)
 
     ## ==> ERROR HANDLING
     #############################################################################################
@@ -15,7 +18,7 @@ class Miscellaneous(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error) -> None:
         if isinstance(error, commands.CommandNotFound):
-            await ctx.send(embed=discord.Embed(title="Whoops", description="Command Not Found", color=discord.Color.red()))        
+            pass
         elif isinstance(error, commands.MissingRequiredArgument):
             if str(ctx.command) == "ban" or str(ctx.command) == "kick":
                 await ctx.send(embed=discord.Embed(title="Whoops", description=f"Tell me the user you want to {str(ctx.command)} too!", color=discord.Color.red()))
@@ -40,6 +43,8 @@ class Miscellaneous(commands.Cog):
             await ctx.send(embed=discord.Embed(title="Whoops", description=f"I cannot read that channel!", color=discord.Color.red()))
         elif isinstance(error, commands.CommandOnCooldown):
             await ctx.send(embed=discord.Embed(title="Whoops", description=f"{str(ctx.command).capitalize()} Command is on Cooldown!", color=discord.Color.red()))
+        elif isinstance(error, commands.MissingPermissions):
+            await ctx.send(embed=discord.Embed(title="Whoops", description="It looks like I don't have perms to Process that", color=discord.Color.red()))
         else:
             await ctx.send(embed=discord.Embed(title="Whoops", description=f"An Unexpected Error has popped out of nowhere: {error}", color = discord.Color.red()))
 
@@ -62,295 +67,27 @@ class Miscellaneous(commands.Cog):
     ##############################################################################################
 
     @commands.command()
-    async def help(self, ctx: commands.Context,*,thing=None) -> None:
-        embed = discord.Embed(title="HELP",color=ctx.author.color)
-
-        embed.set_thumbnail(url="https://media.discordapp.net/attachments/848185831940030485/849958477366427648/assistant2.png")
-
-        if thing == None:
-            embed.add_field(
-                name="What do you want help with?",
-                value="Type any of the commands below to get help:",
-                inline=False
-            )
-            embed.add_field(name=f"{'■'*15}\n:hand_splayed: >help Welcomer",value="```\nTo Get Help with Welcomer Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:face_with_monocle: >help Moderation",value="```\nTo Get Help with Moderation Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:grin: >help Fun",value=f"```\nTo Get Help with Fun Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:musical_note: >help Music",value=f"```\nTo Get Help with Music Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:o2: >help Miscellaneous", value=f"```\nTo Get Help with Other Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:game_die: >help Tic Tac Toe",value=f"```\nTo Get Help with Tic Tac Toe Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:notepad_spiral: >help Embeds", value=f"```\nTo Get Help with Embed Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:alien: >help Lon", value=f"```\nTo Get Help with LON Commands\n```\n", inline=False)
-            embed.add_field(name=f"{'■'*15}\n:alien: >help Leveling", value= f"```\nTo Get Gelp with Leveling Commands\n```", inline=False)
+    @commands.cooldown(1,60,commands.cooldowns.BucketType.user)
+    async def help(self, ctx: commands.Context) -> None:
+        
+        pages = []
+        menu = PaginatedMenu(ctx)
+        
+        for i in self.CONFIG:
+            description = ""
+            for j in self.CONFIG[i]:
+                description += "\n{}".format(j + '\n' +  self.CONFIG[i][j])
             
-        elif thing.lower() == "welcomer":
-            embed.add_field(
-                name="**WELCOMER**",
-                inline=False,
-                value=f"""
-{'■'*15}
-:white_check_mark: `>toggleWelcomer`:
-```
-To Toggle Welcomer On or Off
-```
-{'■'*15}
-:scroll: `>SetWelcomeMessage <message>`:
-```
-To Set the Welcome Message
-Using "|user|" in message will replace it with a mention of the new user
-Using "|guild|" in message will replace it with the name of the server
-```
-{'■'*15}
-:scroll: `>SetLeaveMessage <message>`:
-```
-To Set the Leave Message
-Using "|user|" in message will replace it with User's Name
-Using "|guild|" in message will replace it with Server's Name
-```
-{'■'*15}
-:dart: `>setWelcomeChannel <Channel>`:
-```
-To Set the channel to send Welcome message in
-Mention channel as #<channel name>
-```
-    """
-        )
-
-        elif thing.lower() in ["moderation", "mod"]:
-            embed.add_field(
-                name="MODERATION",
-                inline=False,
-                value=f"""
-{'■'*15}
-:x: `>ban <user>`
-```
-To Ban <user>
-```
-{'■'*15}
-:negative_squared_cross_mark: `>kick <user>`
-```
-To Kick <user>
-```
-{'■'*15}
-:white_check_mark: `>unban <username>#<discriminator>`
-```
-To Unban the user passed in the function
-```
-{'■'*15}
-:mute: `>mute <user> <time>`
-```
-To Mute <user> for <time>. 
-Time: s, m, h, d, w
-```
-{'■'*15}
-:loud_sound: `>unmute <user>`
-```
-To Unmute <user>
-```
-{'■'*15}
-:ninja: `>setLogChannel <channel>`
-```
-To Set the Log Channel on the server
-It will not send logs until this is not set
-```
-{'■'*15}
-:white_check_mark: `>toggleLog`
-```
-To Toggle Logs
-The Bot will not send logs until this is not done
-```
-{'■'*15}
-:ninja: `>toggleMod`
-```
-To toggle AutoMod Feature of the bot 
-```
-{'■'*15}
-:x: `>purge <number>`
-```
-It will clear <number> amount of messages
-```
-""",
-        )
-
-        elif thing.lower() == "fun":
-            embed.add_field(
-                name="FUN",
-                inline=False,
-                value=f"""
-{'■'*15}
-:thinking_face: `>8ball <question>`
-```
-Give a random answer for <question>
-```
-{'■'*15}
-:joy: `>meme`
-```
-Sends a meme from Reddit
-```
-{'■'*15}
-:rofl: `>memes <number>`
-```
-Sends <number> amount of memes
-Maximum: 3
-```
-{'■'*15} 
-:regional_indicator_f: `>F <reason>`
-```
-To press F for <reason> [reason is optional]
-```
-{'■'*15}
-:coin: `>coin`
-```
-To toss a coin
-```
-"""
-        )
-
-        elif thing.lower() == "music":
-            embed.add_field(
-                name="MUSIC",
-                inline=False,
-                value=f"""
-{'■'*15}
-:musical_note: `>play <music>`
-```
-Adds <music> to queue or starts playing if queue is empty
-```
-{'■'*15}
-:track_next: `>skip`
-```
-Skips to next song
-```
-{'■'*15}
-:pause_button: `>pause`
-```
-Pauses the music
-```
-{'■'*15}
-:arrow_forward: `>resume`
-```
-Resumes music
-```
-{'■'*15}
-:notepad_spiral: `>queue`
-```
-Displays the song queue
-```
-{'■'*15}
-:no_entry_sign: `>disconnect`
-```
-Disconnects the bot from voice channel and clears the queue
-```
-"""
-        )
-
-        elif thing.lower() in ["miscellaneous", "misc"]:
-            embed.add_field(
-                name="MISCELLANEOUS COMMANDS",
-                inline=False,
-                value=f"""
-{'■'*15}
-:bar_chart: `>stats`
-```
-To Get the stats for the Bot
-```
-{'■'*15}
-:face_with_monocle: `>av <user>`
-```
-To Get the Avatar of <user>
-If nothing is passed it will send the authors avatar
-```
-{'■'*15}
-:eyes: `>about <user>`
-```
-To Get the info of <user>
-If nothing is passed it will send the authors info
-```
-{'■'*15}
-:relieved: `>credits`
-```
-To Get the Credits of the bot
-```
-{'■'*15}
-:moneybag:`>donate`
-```
-To get patreon link of HackArmour
-```
-"""
-        )
-
-        elif thing.lower() in ["tic tac toe", "tictactoe", "ttt"]:
-            embed.add_field(
-                name="TIC TAC TOE",
-                inline=False,
-                value="""
-:video_game: `>ttt <user>`:
-```
-To Start a game of Tic Tac Toe with <user>
-Please wait until the bot reacts with all the emojis before you select one
-```
-"""
-        )
-
-        elif thing.lower() in ["embeds", "embed"]:
-            embed.add_field(
-                name="**EMBEDS**",
-                inline=False,
-                value="""
-:notepad_spiral: `>embed <mention_channel>`
-```
-Sends an embed at <mention_channel>
-    
-Bot will Prompt you for the values
-    
-You can enter the value as "none" if you don't want to enter it in "description", "number of fields" and "footer"
-```
-"""
-        )
-        
-        elif thing.lower() == "lon":
-            embed.add_field(
-                name = "**LON**",
-                inline=False,
-                value=f"""
-{'■'*15}
-**L**ACK **O**F **N**ITRO
-{choice([":laughing:", ":grinning:", ":smiley:", ":smile:", ":grin:", ":laughing:"])} `>lon <emoji name>`
-```
-Sends an emoji with name <emoji name> if it exists in the configuration file
-```
-{'■'*15}
-:ballot_box_with_check: `>lonall`
-```
-Get list of all emojis which can be used
-```
-"""
-        )
-        
-        elif thing.lower() in ["leveling"]:
-            embed.add_field(
-            name="**LEVELING**",
-            inline=False,
-            value=f"""
-{'■'*15}
-:arrow_up: `>rank <user: optional>`
-```
-To Get <user>'s rank card
-
-If nothing is passed the bot will send the author's rank card
-```
-{'■'*15}
-:hash: `>lb`
-```
-To Get the Leaderboard of the server
-```
- """
+            pages.append(
+                Page(
+                    title = i,
+                    description = description,
+                    color = ctx.author.color
+                )
             )
-
-        else:
-            embed.add_field(name="I can't Understand what do you mean", value="Use just `>help` without any arguements")
-
-        await ctx.send(embed=embed)
+        menu.add_pages(pages)
+            
+        await menu.open()
 
     #############################################################################################
 
