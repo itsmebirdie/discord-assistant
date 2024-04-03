@@ -34,5 +34,5 @@ Please check [PR creation guide](https://thebirdie.codes/creating-a-pr-on-github
 ___
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/itsmebirdie/discord-assistant?label=Docker%20build%20size)
-![Uptime](https://img.shields.io/badge/Uptime-00.0%25-brightred)
+![Uptime](https://img.shields.io/badge/Uptime-00.0%25-red)
 ![GitHub commits since tagged version](https://img.shields.io/github/commits-since/assistant/discord-assistant/v1.0.0?logo=python)
